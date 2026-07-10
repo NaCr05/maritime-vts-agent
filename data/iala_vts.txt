@@ -1,0 +1,55 @@
+=========================================================
+IALA 关于 VTS 的定义与标准（补充）
+（来源：IALA Vessel Traffic Services Manual）
+=========================================================
+
+【1. IALA 的 VTS 定义】
+国际航标协会（IALA, International Association of Marine Aids
+to Navigation and Lighthouse Authorities）作为 IMO 的技术咨询
+机构，发布《VTS 手册》（IALA Vessel Traffic Services Manual），
+是 VTS 实施层面的国际通用规范。
+
+IALA 将 VTS 定义为：
+  VTS 是由主管机关实施，旨在改善 VTS 区域内船舶交通安全与
+  效率、保护环境而提供的服务。
+
+【2. IALA 的 VTS 分类】
+按复杂程度递增：
+- Level 1：基础信息服务（仅提供航行警告、气象等）
+- Level 2：航行辅助服务（提供船位监控、航行建议）
+- Level 3：交通组织服务（参与交通组织规划与决策）
+
+按覆盖水域类型：
+- 港口 VTS（Port VTS）
+- 沿海 VTS（Coastal VTS）
+- 内河 VTS（Inland VTS）
+- 区域 VTS（Regional VTS）
+
+【3. AIS 在 VTS 中的角色（IALA 视角）】
+- AIS 是 VTS 数据采集的主要手段之一
+- 通过 AIS 接收的船位信息可与雷达回波融合（sensor fusion）
+- AIS 静态信息（MMSI、船名、船长、船舶类型）用于身份识别
+- AIS 动态信息（位置、航速、航向）用于态势感知
+- AIS 航行信息（目的地、ETA、货物）用于物流管理
+
+【4. 异常行为检测（Anomaly Detection）的方法】
+VTS 中心常用的船舶异常检测方法：
+1. 轨迹偏离检测：实际轨迹与计划航线对比，超出阈值告警
+2. 速度异常：SOG 突变为 0（疑似关闭 AIS）、SOG 异常高
+3. 区域侵入：进入禁航区、锚泊区、养殖区
+4. AIS 静默：长时间未收到 AIS 信号（默认关闭设备）
+5. 偏航预警：COG 与目的地连线偏差超过阈值
+6. 速度分布异常：单船速度长期偏离船型均值
+
+【5. 中国 VTS 体系】
+中国海事局依据 IMO A.857(20) 和 IALA 标准，已建成覆盖沿海主要
+港口和重要水道的 VTS 系统。代表系统包括：
+- 上海 VTS（中国最早、规模最大）
+- 宁波-舟山 VTS
+- 天津 VTS
+- 青岛 VTS
+- 大连 VTS
+- 海口 VTS
+
+中国海事局官网 https://www.msa.gov.cn 提供各 VTS 中心的联系方式
+与服务区域。

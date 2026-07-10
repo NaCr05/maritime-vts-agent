@@ -1,0 +1,83 @@
+=========================================================
+IMO 关于 VTS 的官方定义与法律依据
+（来源：IMO Resolution A.857(20) Guidelines for Vessel Traffic Services, 1997）
+=========================================================
+
+【1. VTS 的国际法源】
+VTS（Vessel Traffic Services，船舶交通服务）的国际权威定义来自
+国际海事组织（IMO, International Maritime Organization）。
+1997 年 11 月 27 日，IMO 第 20 届大会通过 A.857(20) 决议
+《船舶交通服务指南》（Guidelines for Vessel Traffic Services），
+这是全球所有 VTS 系统的最高指导文件。
+
+【2. IMO A.857(20) 对 VTS 的定义】
+IMO 在 A.857(20) 第 1.1 节中给出的权威定义：
+
+  VTS 是由主管机关（Competent Authority）实施、用于改善
+  船舶交通安全和效率、保护环境、支持沿岸国应急反应能力的
+  一种服务（service）。
+
+  VTS 应至少执行以下功能之一：
+  (a) 数据收集（data collection）
+  (b) 数据评估（data evaluation）
+  (c) 信息服务（information service）
+  (d) 航行辅助服务（navigational assistance service）
+  (e) 交通组织服务（traffic organization service）
+
+  完整系统可包含上述全部功能。VTS 的覆盖水域称为 VTS 区域
+  （VTS area），主管机关为 VTS 主管部门（VTS authority）。
+
+【3. VTS 的核心目标（IMO 表述）】
+- 改善海上交通安全（safety of navigation）
+- 提高船舶交通效率（efficiency of vessel traffic flow）
+- 保护海洋环境（protection of the marine environment）
+- 增强沿岸国/港口主管机关的应急响应能力
+
+【4. VTS 的信息源】
+VTS 主要依赖以下信息源：
+- AIS（自动识别系统）
+- 雷达（marine radar）
+- CCTV 闭路电视
+- VHF 语音通信
+- LRIT（远程识别与跟踪）
+- ECDIS / 电子海图系统
+
+【5. VTS 的法律性质】
+- VTS 是"服务"，不是"交通管制"（traffic control）—— 这点 IMO 特别强调
+- VTS 主管机关发布的"建议"通常不具有强制性，但对 VTS 区域内船舶
+  应遵守国际海上避碰规则（COLREGs）和当地港口规则
+
+=========================================================
+VTS 与 VTMS（船舶交通管理系统）的区别
+=========================================================
+
+【术语对比】
+- VTS：Vessel Traffic Services，船舶交通服务（服务层面）
+- VTMS：Vessel Traffic Management System，船舶交通管理系统（技术系统层面）
+- VTMIS：Vessel Traffic Management and Information Services，
+         船舶交通管理与信息服务（VTS + 信息服务的扩展）
+
+【关键区别】
+1. 概念层级不同
+   - VTS 是 IMO 定义的"服务"，是业务/管理概念
+   - VTMS 是"系统"，是实现 VTS 业务功能的技术手段
+   - VTMIS 在 VTS 基础上加了信息服务（对港航单位、行业等）
+
+2. 监管 vs 工具
+   - VTS 是主管机关（VTS Authority）提供的公共服务
+   - VTMS 是支撑 VTS 业务的软硬件集成系统（含雷达、AIS 接收、
+     数据融合、显示、CCTV、数据库、规则引擎等）
+
+3. 关系
+   - 一个 VTS 业务体系可以由一套 VTMS 系统支撑
+   - 一套 VTMS 系统也可以支撑多个 VTS 区域
+   - VTS 是"做什么"，VTMS 是"用什么做"
+
+4. 国际标准对应
+   - VTS → IMO A.857(20)、IALA Guidelines
+   - VTMS → IEC 61996、IEC 62376、ISO 8468 等工业标准
+   - VTMIS → IALA Recommendation V-120
+
+【类比】
+可以把 VTS 看作"医院"，把 VTMS 看作"医院的医疗设备系统"。
+VTS 是业务实体，VTMS 是技术平台。

@@ -1,0 +1,5 @@
+AIS 是 Automatic Identification System 的缩写，中文通常称为船舶自动识别系统。AIS 可以让船舶自动广播自身身份、位置、航速、航向、船舶类型和航行状态等信息。
+
+常见 AIS 数据字段包括 MMSI、经度、纬度、SOG、COG、heading、timestamp、ship_type 和 navigation_status。其中，MMSI 可以理解为船舶的唯一识别码；SOG 表示对地航速；COG 表示对地航向；heading 表示船首朝向；timestamp 表示数据记录时间。
+
+在 VTS 场景中，AIS 数据可以用于船舶轨迹跟踪、交通流分析、异常行为识别、碰撞风险判断和违规预警。

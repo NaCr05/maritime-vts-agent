@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" role="img" aria-label="Maritime VTS Agent demo overview placeholder">
+  <rect width="1280" height="520" fill="#0f172a"/>
+  <rect x="40" y="40" width="1200" height="440" rx="18" fill="#111827" stroke="#334155"/>
+  <text x="80" y="112" fill="#f8fafc" font-family="Arial, sans-serif" font-size="42" font-weight="700">Maritime VTS Knowledge Agent</text>
+  <text x="80" y="158" fill="#93c5fd" font-family="Arial, sans-serif" font-size="22">AIS trajectory analytics · RAG Q&amp;A · LLM tool calling · automated reports</text>
+  <g transform="translate(80,210)">
+    <rect width="245" height="170" rx="12" fill="#1e293b" stroke="#475569"/>
+    <text x="22" y="44" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="22" font-weight="700">RAG Knowledge QA</text>
+    <text x="22" y="82" fill="#94a3b8" font-family="Arial, sans-serif" font-size="16">Hybrid retrieval</text>
+    <text x="22" y="112" fill="#94a3b8" font-family="Arial, sans-serif" font-size="16">Exact vessel recall</text>
+  </g>
+  <g transform="translate(365,210)">
+    <rect width="245" height="170" rx="12" fill="#1e293b" stroke="#475569"/>
+    <text x="22" y="44" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="22" font-weight="700">AIS Trajectory</text>
+    <path d="M35 125 C80 70, 125 155, 200 82" fill="none" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="35" cy="125" r="8" fill="#22c55e"/>
+    <circle cx="200" cy="82" r="8" fill="#ef4444"/>
+  </g>
+  <g transform="translate(650,210)">
+    <rect width="245" height="170" rx="12" fill="#1e293b" stroke="#475569"/>
+    <text x="22" y="44" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="22" font-weight="700">Risk Analysis</text>
+    <circle cx="72" cy="110" r="34" fill="#f97316" opacity="0.85"/>
+    <circle cx="138" cy="96" r="22" fill="#facc15" opacity="0.85"/>
+    <circle cx="176" cy="130" r="28" fill="#ef4444" opacity="0.85"/>
+  </g>
+  <g transform="translate(935,210)">
+    <rect width="245" height="170" rx="12" fill="#1e293b" stroke="#475569"/>
+    <text x="22" y="44" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="22" font-weight="700">Reports</text>
+    <rect x="30" y="70" width="170" height="88" rx="8" fill="#f8fafc"/>
+    <line x1="50" y1="95" x2="180" y2="95" stroke="#64748b" stroke-width="5"/>
+    <line x1="50" y1="120" x2="160" y2="120" stroke="#94a3b8" stroke-width="5"/>
+  </g>
+  <text x="80" y="438" fill="#64748b" font-family="Arial, sans-serif" font-size="16">Placeholder preview. Replace with real screenshots before public release.</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="Monthly report screenshot placeholder">
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <rect x="38" y="30" width="564" height="300" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="64" y="76" fill="#0f172a" font-family="Arial, sans-serif" font-size="28" font-weight="700">月度报告自动生成</text>
+  <rect x="64" y="106" width="120" height="52" rx="8" fill="#dbeafe"/>
+  <rect x="204" y="106" width="120" height="52" rx="8" fill="#dcfce7"/>
+  <rect x="344" y="106" width="120" height="52" rx="8" fill="#fee2e2"/>
+  <text x="82" y="138" fill="#1d4ed8" font-family="Arial, sans-serif" font-size="16">Markdown</text>
+  <text x="242" y="138" fill="#15803d" font-family="Arial, sans-serif" font-size="16">Word</text>
+  <text x="386" y="138" fill="#b91c1c" font-family="Arial, sans-serif" font-size="16">PDF</text>
+  <line x1="64" y1="205" x2="540" y2="205" stroke="#94a3b8" stroke-width="6"/>
+  <line x1="64" y1="238" x2="500" y2="238" stroke="#cbd5e1" stroke-width="6"/>
+  <line x1="64" y1="271" x2="430" y2="271" stroke="#cbd5e1" stroke-width="6"/>
+</svg>

@@ -1,0 +1,40 @@
+# 凭据
+.env
+.env.local
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# 数据缓存
+data/cache/
+*.parquet
+
+# HuggingFace / Sentence-Transformers 缓存
+.vts_hf_cache/
+.cache/
+
+# 调试日志
+.debug_main.log
+*.log
+streamlit*.log
+_diag*.py
+_test_*.py
+
+# 系统
+.DS_Store
+Thumbs.db

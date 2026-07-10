@@ -1,0 +1,21 @@
+# Web UI
+streamlit>=1.30.0
+pydeck>=0.8.0
+
+# 数据处理
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Embedding
+sentence-transformers>=2.6.0
+scikit-learn>=1.3.0
+
+# LLM (OpenAI 兼容协议 - DeepSeek/Qwen/OpenAI 都用这个)
+openai>=1.30.0
+
+# 报告导出
+python-docx>=1.1.0
+reportlab>=4.0.0
+
+# 配置
+python-dotenv>=1.0.0

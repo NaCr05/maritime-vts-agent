@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="Anchor clustering screenshot placeholder">
+  <rect width="640" height="360" fill="#111827"/>
+  <rect x="28" y="28" width="584" height="304" rx="14" fill="#0f172a" stroke="#334155"/>
+  <text x="52" y="76" fill="#f8fafc" font-family="Arial, sans-serif" font-size="28" font-weight="700">DBSCAN 锚地聚类</text>
+  <g opacity="0.9">
+    <circle cx="170" cy="180" r="58" fill="#f97316" opacity="0.35"/>
+    <circle cx="170" cy="180" r="12" fill="#fb923c"/>
+    <circle cx="360" cy="205" r="76" fill="#ef4444" opacity="0.32"/>
+    <circle cx="360" cy="205" r="14" fill="#f87171"/>
+    <circle cx="490" cy="135" r="42" fill="#facc15" opacity="0.35"/>
+    <circle cx="490" cy="135" r="10" fill="#fde047"/>
+  </g>
+  <text x="52" y="315" fill="#94a3b8" font-family="Arial, sans-serif" font-size="16">Low-speed AIS points · haversine DBSCAN · stay area centers</text>
+</svg>
