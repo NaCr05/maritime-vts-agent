@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Maritime VTS · 组件与数据关系",
+    "locale": "zh-CN",
+    "animation": "none",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1350,
+      650
+    ],
+    "repository": {
+      "url": "https://github.com/NaCr05/maritime-vts-agent",
+      "provider": "github",
+      "revision": "51d0c6c499becb92a425e4f1c64894763c5130a4"
+    }
+  },
+  "components": [
+    {
+      "id": "ui",
+      "type": "frontend",
+      "label": "Streamlit 界面",
+      "sublabel": "用户选择功能页面",
+      "pos": [
+        60,
+        250
+      ],
+      "size": [
+        220,
+        90
+      ],
+      "sources": [
+        {
+          "path": "app.py",
+          "line": 759,
+          "end_line": 783
+        }
+      ]
+    },
+    {
+      "id": "knowledge",
+      "type": "database",
+      "label": "本地知识与向量",
+      "sublabel": "海事文本 · 可注入船只摘要",
+      "pos": [
+        60,
+        70
+      ],
+      "size": [
+        220,
+        90
+      ],
+      "sources": [
+        {
+          "path": "src/vector_store.py",
+          "line": 155
+        },
+        {
+          "path": "app.py",
+          "line": 750
+        }
+      ]
+    },
+    {
+      "id": "rag",
+      "type": "backend",
+      "label": "RAGEngine",
+      "sublabel": "船号精确召回 + 向量检索",
+      "pos": [
+        430,
+        70
+      ],
+      "size": [
+        220,
+        90
+      ],
+      "sources": [
+        {
+          "path": "src/rag_engine.py",
+          "line": 100
+        },
+        {
+          "path": "app.py",
+          "line": 777
+        }
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "AISAgent",
+      "sublabel": "13 个工具 · 最多 5 轮",
+      "pos": [
+        430,
+        250
+      ],
+      "size": [
+        220,
+        90
+      ],
+      "sources": [
+        {
+          "path": "src/ais_agent.py",
+          "line": 573
+        }
+      ]
+    },
+    {
+      "id": "llm",
+      "type": "external",
+      "label": "配置的 LLM 服务",
+      "sublabel": "OpenAI 兼容协议 · 需要 Key",
+      "pos": [
+        1050,
+        160
+      ],
+      "size": [
+        250,
+        90
+      ],
+      "sources": [
+        {
+          "path": "src/config.py"
+        },
+        {
+          "path": "src/ais_agent.py",
+          "line": 614
+        }
+      ]
+    },
+    {
+      "id": "analysis",
+      "type": "backend",
+      "label": "AIS 查询与分析",
+      "sublabel": "轨迹 · 异常 · 围栏 · 停泊",
+      "pos": [
+        430,
+        430
+      ],
+      "size": [
+        220,
+        90
+      ],
+      "sources": [
+        {
+          "path": "src/ais_query.py"
+        },
+        {
+          "path": "src/ais_agent.py",
+          "line": 312
+        }
+      ]
+    },
+    {
+      "id": "dataset",
+      "type": "database",
+      "label": "离线 AIS CSV",
+      "sublabel": "100 艘船 · 131,907 条记录",
+      "pos": [
+        1050,
+        430
+      ],
+      "size": [
+        250,
+        90
+      ],
+      "sources": [
+        {
+          "path": "src/ais_loader.py",
+          "line": 69
+        }
+      ]
+    },
+    {
+      "id": "outputs",
+      "type": "frontend",
+      "label": "地图、表格与报告",
+      "sublabel": "Markdown · Word · PDF 下载",
+      "pos": [
+        60,
+        535
+      ],
+      "size": [
+        250,
+        90
+      ],
+      "sources": [
+        {
+          "path": "ui/report_page.py",
+          "line": 100
+        },
+        {
+          "path": "src/report_exporter.py"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "choose-rag",
+      "from": "ui",
+      "to": "rag",
+      "label": "知识问答"
+    },
+    {
+      "id": "retrieve",
+      "from": "rag",
+      "to": "knowledge",
+      "label": "本地检索"
+    },
+    {
+      "id": "choose-agent",
+      "from": "ui",
+      "to": "agent",
+      "label": "自然语言",
+      "variant": "emphasis",
+      "labelAt": [
+        395,
+        293
+      ]
+    },
+    {
+      "id": "choose-analysis",
+      "from": "ui",
+      "to": "analysis",
+      "label": "直接操作"
+    },
+    {
+      "id": "rag-generate",
+      "from": "rag",
+      "to": "llm",
+      "label": "上下文 → 回答"
+    },
+    {
+      "id": "agent-generate",
+      "from": "agent",
+      "to": "llm",
+      "label": "问题 → 工具选择",
+      "variant": "emphasis"
+    },
+    {
+      "id": "run-tools",
+      "from": "agent",
+      "to": "analysis",
+      "label": "执行查询工具",
+      "variant": "emphasis",
+      "labelAt": [
+        590,
+        385
+      ]
+    },
+    {
+      "id": "read-csv",
+      "from": "analysis",
+      "to": "dataset",
+      "label": "经 AISLoader 读取"
+    },
+    {
+      "id": "show-results",
+      "from": "analysis",
+      "to": "outputs",
+      "label": "页面呈现 / 导出"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "功能由页面选择",
+      "items": [
+        "RAG 与 AIS 查询是两个入口；当前没有统一的自动意图路由。",
+        "Agent 页面展示回答和工具记录；地图与完整报告使用独立分析页面。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "本地与外部服务",
+      "items": [
+        "CSV 与向量在本地；问题、检索片段和工具结果可能发往配置的 LLM。",
+        "无 Key 可直接做 AIS 分析；首次启动仍需本地 embedding 模型就绪。"
+      ]
+    }
+  ]
+}

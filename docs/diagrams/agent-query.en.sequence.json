@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "AIS Agent · One vessel query",
+    "locale": "en",
+    "animation": "none",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "viewBox": [
+      1250,
+      580
+    ]
+  },
+  "participants": [
+    {
+      "id": "ui",
+      "type": "frontend",
+      "label": "Streamlit"
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "AISAgent"
+    },
+    {
+      "id": "llm",
+      "type": "external",
+      "label": "LLM service"
+    },
+    {
+      "id": "tools",
+      "type": "backend",
+      "label": "Tool execution"
+    },
+    {
+      "id": "data",
+      "type": "database",
+      "label": "AISQuery"
+    }
+  ],
+  "segments": [
+    {
+      "from": 145,
+      "to": 248,
+      "label": "Question and tool choice"
+    },
+    {
+      "from": 253,
+      "to": 393,
+      "label": "Local AIS query"
+    },
+    {
+      "from": 399,
+      "to": 506,
+      "label": "Result and answer"
+    }
+  ],
+  "messages": [
+    {
+      "id": "ask",
+      "from": "ui",
+      "to": "agent",
+      "y": 160,
+      "label": "Summary for vessel 18330",
+      "variant": "emphasis"
+    },
+    {
+      "id": "select",
+      "from": "agent",
+      "to": "llm",
+      "y": 196,
+      "label": "Question + tool schemas"
+    },
+    {
+      "id": "tool-request",
+      "from": "llm",
+      "to": "agent",
+      "y": 232,
+      "label": "vessel_summary(18330)",
+      "variant": "return"
+    },
+    {
+      "id": "execute",
+      "from": "agent",
+      "to": "tools",
+      "y": 268,
+      "label": "Parse arguments; execute tool",
+      "variant": "emphasis"
+    },
+    {
+      "id": "query",
+      "from": "tools",
+      "to": "data",
+      "y": 304,
+      "label": "Read vessel statistics"
+    },
+    {
+      "id": "statistics",
+      "from": "data",
+      "to": "tools",
+      "y": 340,
+      "label": "Speed, stops, estimated distance",
+      "variant": "return"
+    },
+    {
+      "id": "result",
+      "from": "tools",
+      "to": "agent",
+      "y": 376,
+      "label": "Structured result",
+      "variant": "return"
+    },
+    {
+      "id": "evidence",
+      "from": "agent",
+      "to": "llm",
+      "y": 412,
+      "label": "role=tool + query result"
+    },
+    {
+      "id": "answer",
+      "from": "llm",
+      "to": "agent",
+      "y": 448,
+      "label": "Generate answer",
+      "variant": "return"
+    },
+    {
+      "id": "display",
+      "from": "agent",
+      "to": "ui",
+      "y": 484,
+      "label": "Answer + tool-call log",
+      "variant": "return"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "agent",
+      "from": 160,
+      "to": 494,
+      "type": "backend"
+    },
+    {
+      "participant": "llm",
+      "from": 196,
+      "to": 242,
+      "type": "external"
+    },
+    {
+      "participant": "tools",
+      "from": 268,
+      "to": 386,
+      "type": "backend"
+    },
+    {
+      "participant": "data",
+      "from": 304,
+      "to": 350,
+      "type": "database"
+    },
+    {
+      "participant": "llm",
+      "from": 412,
+      "to": 458,
+      "type": "external"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Representative code path",
+      "items": [
+        "13 tools, including direct_answer; the diagram shows one example.",
+        "At most 5 LLM turns. One no-tool retry; later text can still pass."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Runtime and evidence",
+      "items": [
+        "LLM_API_KEY required. CSV data is loaded before the query.",
+        "Source trace only; no live LLM call. UI shows text and tool logs."
+      ]
+    }
+  ]
+}
