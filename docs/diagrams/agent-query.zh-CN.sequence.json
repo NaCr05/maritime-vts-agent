@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "AIS Agent · 一次船只查询",
+    "locale": "zh-CN",
+    "animation": "none",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "viewBox": [
+      1250,
+      580
+    ]
+  },
+  "participants": [
+    {
+      "id": "ui",
+      "type": "frontend",
+      "label": "Streamlit"
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "AISAgent"
+    },
+    {
+      "id": "llm",
+      "type": "external",
+      "label": "LLM 服务"
+    },
+    {
+      "id": "tools",
+      "type": "backend",
+      "label": "工具执行"
+    },
+    {
+      "id": "data",
+      "type": "database",
+      "label": "AISQuery"
+    }
+  ],
+  "segments": [
+    {
+      "from": 145,
+      "to": 248,
+      "label": "提问与工具选择"
+    },
+    {
+      "from": 253,
+      "to": 393,
+      "label": "本地 AIS 查询"
+    },
+    {
+      "from": 399,
+      "to": 506,
+      "label": "结果回传与回答"
+    }
+  ],
+  "messages": [
+    {
+      "id": "ask",
+      "from": "ui",
+      "to": "agent",
+      "y": 160,
+      "label": "船 18330 的统计摘要",
+      "variant": "emphasis"
+    },
+    {
+      "id": "select",
+      "from": "agent",
+      "to": "llm",
+      "y": 196,
+      "label": "问题 + 工具定义"
+    },
+    {
+      "id": "tool-request",
+      "from": "llm",
+      "to": "agent",
+      "y": 232,
+      "label": "vessel_summary(18330)",
+      "variant": "return"
+    },
+    {
+      "id": "execute",
+      "from": "agent",
+      "to": "tools",
+      "y": 268,
+      "label": "解析参数并执行工具",
+      "variant": "emphasis"
+    },
+    {
+      "id": "query",
+      "from": "tools",
+      "to": "data",
+      "y": 304,
+      "label": "按船号读取统计"
+    },
+    {
+      "id": "statistics",
+      "from": "data",
+      "to": "tools",
+      "y": 340,
+      "label": "航速、停泊率、估算航程",
+      "variant": "return"
+    },
+    {
+      "id": "result",
+      "from": "tools",
+      "to": "agent",
+      "y": 376,
+      "label": "结构化结果",
+      "variant": "return"
+    },
+    {
+      "id": "evidence",
+      "from": "agent",
+      "to": "llm",
+      "y": 412,
+      "label": "role=tool + 查询结果"
+    },
+    {
+      "id": "answer",
+      "from": "llm",
+      "to": "agent",
+      "y": 448,
+      "label": "生成自然语言回答",
+      "variant": "return"
+    },
+    {
+      "id": "display",
+      "from": "agent",
+      "to": "ui",
+      "y": 484,
+      "label": "回答 + 工具调用记录",
+      "variant": "return"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "agent",
+      "from": 160,
+      "to": 494,
+      "type": "backend"
+    },
+    {
+      "participant": "llm",
+      "from": 196,
+      "to": 242,
+      "type": "external"
+    },
+    {
+      "participant": "tools",
+      "from": 268,
+      "to": 386,
+      "type": "backend"
+    },
+    {
+      "participant": "data",
+      "from": 304,
+      "to": 350,
+      "type": "database"
+    },
+    {
+      "participant": "llm",
+      "from": 412,
+      "to": 458,
+      "type": "external"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "代码追踪的代表路径",
+      "items": [
+        "13 个工具中包含 direct_answer；图中是一条代表路径。",
+        "最多 5 轮；首轮未调工具会再提示，后续仍可能返回无工具文本。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "运行与证据边界",
+      "items": [
+        "需要 LLM_API_KEY；查询前 CSV 已载入 AISQuery。",
+        "依据源码绘制，未执行在线调用；页面展示回答与工具记录。"
+      ]
+    }
+  ]
+}

@@ -97,7 +97,7 @@ def render_monthly_report_page(
                 st.session_state.monthly_report_payload = None
             else:
                 with st.spinner("正在汇总月度 AIS 数据..."):
-                    monthly_vessels = _calc_monthly_vessel_rows(month_df, ais_query)
+                    monthly_vessels = calc_monthly_vessel_rows(month_df, ais_query)
                     report_anomalies = None
                     report_violations = None
 
@@ -202,7 +202,7 @@ def render_monthly_report_page(
             col_export_docx, col_export_pdf = st.columns(2)
             with col_export_docx:
                 try:
-                    docx_bytes = _cached_report_docx_bytes(report_text)
+                    docx_bytes = cached_report_docx_bytes(report_text)
                     st.download_button(
                         "下载 Word 报告",
                         data=docx_bytes,
@@ -215,7 +215,7 @@ def render_monthly_report_page(
                     st.error(str(e))
             with col_export_pdf:
                 try:
-                    pdf_bytes = _cached_report_pdf_bytes(report_text)
+                    pdf_bytes = cached_report_pdf_bytes(report_text)
                     st.download_button(
                         "下载 PDF 报告",
                         data=pdf_bytes,

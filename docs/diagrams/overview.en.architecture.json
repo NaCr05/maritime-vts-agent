@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Maritime VTS · Components and data",
+    "locale": "en",
+    "animation": "none",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1350,
+      650
+    ],
+    "repository": {
+      "url": "https://github.com/NaCr05/maritime-vts-agent",
+      "provider": "github",
+      "revision": "51d0c6c499becb92a425e4f1c64894763c5130a4"
+    }
+  },
+  "components": [
+    {
+      "id": "ui",
+      "type": "frontend",
+      "label": "Streamlit UI",
+      "sublabel": "User selects a feature page",
+      "pos": [
+        60,
+        250
+      ],
+      "size": [
+        220,
+        90
+      ],
+      "sources": [
+        {
+          "path": "app.py",
+          "line": 759,
+          "end_line": 783
+        }
+      ]
+    },
+    {
+      "id": "knowledge",
+      "type": "database",
+      "label": "Local knowledge index",
+      "sublabel": "Texts + injected AIS summaries",
+      "pos": [
+        60,
+        70
+      ],
+      "size": [
+        220,
+        90
+      ],
+      "sources": [
+        {
+          "path": "src/vector_store.py",
+          "line": 155
+        },
+        {
+          "path": "app.py",
+          "line": 750
+        }
+      ]
+    },
+    {
+      "id": "rag",
+      "type": "backend",
+      "label": "RAGEngine",
+      "sublabel": "Exact vessel ID + vector retrieval",
+      "pos": [
+        430,
+        70
+      ],
+      "size": [
+        220,
+        90
+      ],
+      "sources": [
+        {
+          "path": "src/rag_engine.py",
+          "line": 100
+        },
+        {
+          "path": "app.py",
+          "line": 777
+        }
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "AISAgent",
+      "sublabel": "13 tools · up to 5 LLM turns",
+      "pos": [
+        430,
+        250
+      ],
+      "size": [
+        220,
+        90
+      ],
+      "sources": [
+        {
+          "path": "src/ais_agent.py",
+          "line": 573
+        }
+      ]
+    },
+    {
+      "id": "llm",
+      "type": "external",
+      "label": "Configured LLM",
+      "sublabel": "OpenAI-compatible · Key required",
+      "pos": [
+        1050,
+        160
+      ],
+      "size": [
+        250,
+        90
+      ],
+      "sources": [
+        {
+          "path": "src/config.py"
+        },
+        {
+          "path": "src/ais_agent.py",
+          "line": 614
+        }
+      ]
+    },
+    {
+      "id": "analysis",
+      "type": "backend",
+      "label": "AIS queries & analysis",
+      "sublabel": "Tracks · anomalies · fences · stops",
+      "pos": [
+        430,
+        430
+      ],
+      "size": [
+        220,
+        90
+      ],
+      "sources": [
+        {
+          "path": "src/ais_query.py"
+        },
+        {
+          "path": "src/ais_agent.py",
+          "line": 312
+        }
+      ]
+    },
+    {
+      "id": "dataset",
+      "type": "database",
+      "label": "Offline AIS CSV",
+      "sublabel": "100 vessels · 131,907 records",
+      "pos": [
+        1050,
+        430
+      ],
+      "size": [
+        250,
+        90
+      ],
+      "sources": [
+        {
+          "path": "src/ais_loader.py",
+          "line": 69
+        }
+      ]
+    },
+    {
+      "id": "outputs",
+      "type": "frontend",
+      "label": "Maps, tables & reports",
+      "sublabel": "Markdown · Word · PDF downloads",
+      "pos": [
+        60,
+        535
+      ],
+      "size": [
+        250,
+        90
+      ],
+      "sources": [
+        {
+          "path": "ui/report_page.py",
+          "line": 100
+        },
+        {
+          "path": "src/report_exporter.py"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "choose-rag",
+      "from": "ui",
+      "to": "rag",
+      "label": "Knowledge Q&A"
+    },
+    {
+      "id": "retrieve",
+      "from": "rag",
+      "to": "knowledge",
+      "label": "Retrieve"
+    },
+    {
+      "id": "choose-agent",
+      "from": "ui",
+      "to": "agent",
+      "label": "Ask AIS",
+      "variant": "emphasis",
+      "labelAt": [
+        395,
+        293
+      ]
+    },
+    {
+      "id": "choose-analysis",
+      "from": "ui",
+      "to": "analysis",
+      "label": "Direct controls"
+    },
+    {
+      "id": "rag-generate",
+      "from": "rag",
+      "to": "llm",
+      "label": "Context → answer"
+    },
+    {
+      "id": "agent-generate",
+      "from": "agent",
+      "to": "llm",
+      "label": "Question → tool choice",
+      "variant": "emphasis"
+    },
+    {
+      "id": "run-tools",
+      "from": "agent",
+      "to": "analysis",
+      "label": "Run query tools",
+      "variant": "emphasis",
+      "labelAt": [
+        590,
+        385
+      ]
+    },
+    {
+      "id": "read-csv",
+      "from": "analysis",
+      "to": "dataset",
+      "label": "Load via AISLoader"
+    },
+    {
+      "id": "show-results",
+      "from": "analysis",
+      "to": "outputs",
+      "label": "Render / export"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "The page selects the path",
+      "items": [
+        "Select RAG or AIS in the UI; there is no unified intent router.",
+        "Agent: text and tool logs. Maps and full reports use other pages."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Local data and external services",
+      "items": [
+        "CSV and vectors are local. LLM receives questions and evidence.",
+        "Direct AIS analysis needs no Key; startup needs an embedding model."
+      ]
+    }
+  ]
+}

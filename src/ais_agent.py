@@ -591,7 +591,7 @@ class AISAgent:
             return {
                 "answer": (
                     "当前未配置 LLM_API_KEY，无法使用 AI 智能查询。\n\n"
-                    "请在项目根目录的 .env 文件中配置 DEEPSEEK_API_KEY，"
+                    "请在项目根目录的 .env 文件中配置 LLM_API_KEY，"
                     "重启 demo 后即可启用自然语言 AIS 查询。"
                 ),
                 "tool_calls": [],

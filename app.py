@@ -774,7 +774,7 @@ def main():
     # ==========================
     # Tab 1: 知识库问答
     # ==========================
-    if active_main_tab == "???????":
+    if active_main_tab == "海事知识库问答":
         render_rag_page(rag_engine, top_k, registry, render_sources)
 
     # ==========================
@@ -1843,7 +1843,7 @@ def main():
                     )
 
             # ---- 月度报告 ----
-            if active_ais_tab == "?? ????":
+            if active_ais_tab == "📄 月度报告":
                 render_monthly_report_page(
                     ais_query=ais_query,
                     restricted_zones=RESTRICTED_ZONES,
@@ -2040,7 +2040,7 @@ def main():
                                     st.code(traceback.format_exc(), language="python")
 
             # ---- 地理围栏 ----
-            if active_ais_tab == "??? ????":
+            if active_ais_tab == "🛡️ 地理围栏":
                 render_fence_page(ais_query, registry, RESTRICTED_ZONES, _safe_deck)
 
             # ---- 自然语言查询 ----
@@ -2052,8 +2052,8 @@ def main():
                     st.success("已启用 AI 智能查询（Function Calling）")
                 else:
                     st.warning(
-                        "未配置 LLM_API_KEY，已使用关键词匹配降级方案。"
-                        "请在 .env 中配置 DeepSeek API Key 后重启 demo。"
+                        "未配置 LLM_API_KEY，自然语言查询暂不可用。"
+                        "请在 .env 中配置 API Key 后重启 demo；也可使用其他 AIS 分析页面。"
                     )
 
                 st.info(
